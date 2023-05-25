@@ -11,7 +11,7 @@ import io.cucumber.junit.CucumberOptions;
             		plugin = {"pretty",
             				"com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"},
             glue = {"stepdefinations","AppHooks"},
-           tags="@NavigateArticleSection"
+           tags="@NavigateLatestSection"
 
     )
 
