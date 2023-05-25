@@ -6,7 +6,7 @@ import java.util.Properties;
 
 public class ConfigReader 
 {
-private static String configpath="/Users/someghana/eclipse-workspace/usga/WebProjectPOM/src/test/resources/config/config.properties";
+private static String configpath=System.getProperty("user.dir")+"/src/test/resources/config/config.properties";
 private Properties prop;
 public Properties init_prop()
 {

@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Reporter;
 
 
 
@@ -17,6 +18,8 @@ public class LatestPage
 
 private By movetochampionship=By.xpath("(//button[text()='championships'])[1]");
 private By selectchampionship=By.xpath("//a[@class='s-list-item s-alignment--left']");
+private By moremenu=By.xpath("(//button[@aria-label='uso navigation More toggle button'])[2]");
+private By moremenuclose=By.xpath("(//button[@class='nav-more_dropdown_closeBtn'])[2]");
 private By Latesttab=By.xpath("//a[text()='Latest']");
 private By scrolltillarticles=By.xpath("//h3[contains(text(),'Articles')]");
 private By articles_totalcards=By.xpath("//a[@class='semi-bold-body small-card_body_title']");
@@ -37,8 +40,11 @@ private By linkedinshare=By.xpath("(//div[@sectionname='Quick Reads']//li[@id='l
 private By scrolltillsocialsection=By.xpath("//h3[@class='medium-title-m-mb social-section_hr-lines']");
 private By nextsocialcard=By.xpath("//button[@class='slick-arrow slick-next']");
 private By previoussocialcard=By.xpath("//button[@class='slick-arrow slick-prev']");
-private By topcta=By.xpath("//div[@class='scroll-to-top-component']//button[@title='Go to top']");
-
+private By askquestion=By.xpath("//button[@aria-label='open chat']");
+private By switchtoaskquestionframe=By.xpath("//div[@class='satisfi_chat']//iframe");
+private By clickmobiletestingguide=By.xpath("//div[@class='satisfi_bubble satisfi_fill_available']//button[text()='Mobile Ticketing Guide']");
+private By verifyanstext=By.xpath("(//div[@class='satisfi_bubble satisfi_fill_available']//p)[2]");
+private By closeaskingquestion=By.xpath("//button[@aria-label='Close Chat Popup']");
 JavascriptExecutor js = (JavascriptExecutor) driver;
 	  	
 	   public LatestPage(WebDriver driver)
@@ -80,10 +86,16 @@ JavascriptExecutor js = (JavascriptExecutor) driver;
       	
  	   
 		}
-		public void navigate_to_latesttab()
-		{		
+		public void moremenu()
+		{
 			ArrayList<String> tabs = new ArrayList<String> (driver.getWindowHandles());
 		    driver.switchTo().window(tabs.get(1));
+		    driver.findElement(moremenu).click();
+		    driver.findElement(moremenuclose).click();
+			
+		}
+		public void navigate_to_latesttab()
+		{		
 			driver.findElement(Latesttab).click();
 		}
 		public void scrolltill_articlessection()
@@ -311,11 +323,31 @@ JavascriptExecutor js = (JavascriptExecutor) driver;
             }
 							
 		}
-		public void click_togo_top() throws Exception
+		public void click_ask_question() throws Exception
 		{
 			Thread.sleep(2000);
-			driver.findElement(topcta).click();
+			driver.findElement(askquestion).click();
 			
 		}
+		public void click_mobiletestingguide_verifyanstext()throws Exception
+		{
+			Thread.sleep(5000);
+			driver.switchTo().frame(driver.findElement(switchtoaskquestionframe));
+			driver.findElement(clickmobiletestingguide).click();
+			Thread.sleep(5000);
+			String text=driver.findElement(verifyanstext).getText();
+			System.out.println(text);
+			
+			
+		}
+		public void closeaskingquestiont()throws Exception
+		{
+			Thread.sleep(3000);
+			driver.switchTo().defaultContent();
+			Thread.sleep(2000);
+			driver.findElement(closeaskingquestion).click();
+		}
+		
+		
 }
 

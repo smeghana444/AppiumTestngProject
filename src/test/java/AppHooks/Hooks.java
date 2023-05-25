@@ -38,21 +38,20 @@ public void launchbrowser()
 	
 	
 }
-
+/*
 @After(order=0)
 public void quitBrowser()
 {
 	driver.quit();
 }
-
+*/
 @After(order=1)
 public void tearDown(Scenario scenario)
 {
 	if(scenario.isFailed())
 	{
 	final byte[] sourcePath= ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
-	scenario.attach(sourcePath, "image/png", scenario.getName());
-	
+	scenario.attach(sourcePath, "image/png", scenario.getName());	
 	}
 	
 }

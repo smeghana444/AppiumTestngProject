@@ -5,6 +5,7 @@ Feature: Navigate to USGA Articles Section
     Given Verify the app title
     Then Navigate to championships
     Then select championship "U.S. Open"
+    Then Click on More menu and close
     Then click on latest tab
     Then Navigate to Articles section
     Then Total Article Cards and Dates
@@ -16,7 +17,9 @@ Feature: Navigate to USGA Articles Section
     Then verify social shares in quick reads
     Then Navigate to Social Section
     Then Verify left and right navigation in social section "2"
-    Then Navigate to Top CTA
+    Then Click on Ask any question button
+    Then Click mobile testing guide and verify response
+    Then Close ask a question screen
 
 
   
